@@ -418,12 +418,6 @@ mkdocs new .
 <li><code>serve.sh</code> : <code>sync_links.py</code>로 notes→docs_build 동기화, <code>mkdocs serve</code>로 로컬 미리보기 실행</li>
 <li><code>deploy.sh</code> : <code>sync_links.py</code>로 동기화, <code>mkdocs gh-deploy</code>로 GitHub Pages에 배포</li>
 </ul>
-<blockquote>
-<p>[!notice] Obcidian에서의 설정 
-- 옵시디언에서 작성한 notes들을 public/private으로 github.io에 공개할지 여부
-- <code>scripts/</code>내부의 파이썬 파일을 통해 자동으로 분류 및  mkdocs.yml 내부 nav 자동 작성 등 여러 기능을 작성해놓음.
-</p>
-</blockquote>
 <div class="admonition note">
 <p class="admonition-title">Obsidian에서의 설정</p>
 <ul>
@@ -484,29 +478,40 @@ markdown_extensions:
 <li>Create repository</li>
 </ol>
 <h2 id="32-upload">3.2 Upload</h2>
-<p><code>mkdocs gh-deploy</code>
-- Markdown 문서를 HTML로 빌드하여 <code>gh-pages</code> 브랜치에 자동 업로드
-- GitHub Pages에 즉시 반영됨</p>
-<p>이미 한 번이라도 정상적으로 <code>mkdocs gh-deploy</code>가 성공했다면
-→ 앞으로는 그냥 <code>mkdocs gh-deploy</code>만 치면 됨</p>
-<p>아직 GitHub repo / remote / 인증이 안 되어 있으면
-→ 초기 1회 세팅 필요</p>
-<p><strong>로컬 프로젝트 폴더로 이동</strong>
-    <code>cd ~/Documents/Obsidian\ Vault</code>
-    → 이 폴더가 GitHub 레포와 연결될 루트 디렉토리</p>
-<p><strong>Git 초기화 (처음 1회)</strong><code>git init 
-    git branch -M main</code>
-<strong>GitHub 레포와 연결 (remote 설정)</strong>
-    <code>git remote add origin https://github.com/donghoo03/donghoo03.github.io.git</code>
-    <code>git remote -v</code></p>
-<p><strong>최초 파일 스테이징 &amp; 커밋</strong><code>git status 
-    git add . 
-    git commit -m "Initial commit"</code></p>
+<p><code>mkdocs gh-deploy</code></p>
+<ul>
+<li>Markdown 문서를 HTML로 빌드하여 <code>gh-pages</code> 브랜치에 자동 업로드</li>
+<li>GitHub Pages에 즉시 반영됨</li>
+</ul>
+<p>이미 한 번이라도 정상적으로 <code>mkdocs gh-deploy</code>가 성공했다면</p>
+<p>→ 앞으로는 그냥 <code>mkdocs gh-deploy</code>만 치면 됨</p>
+<p>아직 GitHub repo / remote / 인증이 안 되어 있으면</p>
+<p>→ 초기 1회 세팅 필요</p>
+<p><strong>로컬 프로젝트 폴더로 이동</strong></p>
+<pre><code>`cd ~/Documents/Obsidian\ Vault`
+→ 이 폴더가 GitHub 레포와 연결될 루트 디렉토리
+</code></pre>
+<p><strong>Git 초기화 (처음 1회)</strong>
+<div class="highlight"><pre><span></span><code>git init 
+git branch -M main
+</code></pre></div></p>
+<p><strong>GitHub 레포와 연결 (remote 설정)</strong>
+<div class="highlight"><pre><span></span><code>git remote add origin https://github.com/donghoo03/donghoo03.github.io.git
+git remote -v
+</code></pre></div></p>
+<p><strong>최초 파일 스테이징 &amp; 커밋</strong>```
+<div class="highlight"><pre><span></span><code>git status 
+git add . 
+git commit -m &quot;Initial commit&quot;
+</code></pre></div></p>
 <p><strong>GitHub로 최초 push</strong>
-<code>git push -u origin main</code></p>
-<p>로그인 정보 입력
-- <strong>Username</strong>: GitHub 아이디
-- <strong>Password</strong>: Personal Access Token (PAT)</p>
+<div class="highlight"><pre><span></span><code>git push -u origin main
+</code></pre></div></p>
+<p>로그인 정보 입력</p>
+<ul>
+<li><strong>Username</strong>: GitHub 아이디</li>
+<li><strong>Password</strong>: Personal Access Token (PAT)</li>
+</ul>
 <p><code>./deploy.sh</code>로 자동화 해놓음</p>
 
 
