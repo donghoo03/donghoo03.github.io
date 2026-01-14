@@ -381,57 +381,86 @@
 <p align="center">
   <em>Fig. 1. 단일 FT 센서와 외력 작용점의 기하학적 관계</em>
 </p>
-<p>위 그림은 FT센서 및 이와 rigid하게 연결되어있는 벽면을 나타내며, 벽면에 외력이 들어왔을 때, FT센서에서 읽어지는 값을 통해 contact point를 찾는다.
-그림 상의 기호는 각각 아래를 의미한다:
-    $F_\text{ss}$ : FT 센서에서 읽어오는 값
-    $F_\text{ext}$ : 벽면에 들어오는 외력
-    $p_\text{ext}$ : 외력 인가 위치
-    $p_\text{ss}$ : FT센서 위치
-    $\vec{r}$ : FT센서부터 외력 인가 지점 $p_\text{ext}$까지의 거리
-    $\vec{n}$ : 벽면의 normal 벡터</p>
-<ul>
-<li>외력은 단일접촉, 점접촉으로 가정한다. 따라서 $p_\text{ext}$에서의 Wrench $F_\text{ext}$은 힘만 존재하며, 모멘트는 0이 된다. </li>
-<li>FT센서에서 읽어지는 Wrench $F_\text{ss}$는 힘과 모멘트 모두 존재하며, 이는 다음과 같은 관계를 가진다.
+<p>위 그림은 FT센서 및 이와 rigid하게 연결되어있는 벽면을 나타내며, 벽면에 외력이 들어왔을 때, FT센서에서 읽어지는 값을 통해 contact point를 찾는다.</p>
+<p>그림 상의 기호는 각각 아래를 의미한다:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">기호</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(F_{\text{ss}}\)</span></td>
+<td>FT 센서에서 읽어오는 값</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(F_{\text{ext}}\)</span></td>
+<td>벽면에 들어오는 외력</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(p_{\text{ext}}\)</span></td>
+<td>외력 인가 위치</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(p_{\text{ss}}\)</span></td>
+<td>FT 센서 위치</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\vec{r}\)</span></td>
+<td>FT 센서부터 외력 인가 지점 <span class="arithmatex">\(p_{\text{ext}}\)</span>까지의 거리</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\vec{n}\)</span></td>
+<td>벽면의 normal 벡터</td>
+</tr>
+</tbody>
+</table>
+<p>외력은 단일접촉, 점접촉으로 가정한다. 따라서 <span class="arithmatex">\(p_\text{ext}\)</span>에서의 Wrench <span class="arithmatex">\(F_\text{ext}\)</span>은 힘만 존재하며, 모멘트는 0이 된다. </p>
+<p>FT센서에서 읽어지는 Wrench <span class="arithmatex">\(F_\text{ss}\)</span>는 힘과 모멘트 모두 존재하며, 이는 다음과 같은 관계를 가진다.
 $$
 \vec{r}\times f_\text{ext}
-\tag{1}
-$$</li>
-<li>평면의 방향벡터 $\vec{n}$을 통해 평면의 방정식은 다음과 같이 나타낼 수 있다: 
+\label{}
+$$
+평면의 방향벡터 <span class="arithmatex">\(\vec{n}\)</span>을 통해 평면의 방정식은 다음과 같이 나타낼 수 있다: 
 $$
 n_x r_x + n_y r_y + n_z r_z + d = 0
-\tag{2}
+\label{}
 $$
-위 (1), (2)식을 아래와 같은 $Ar=b$꼴의 행렬 식으로 나타낼 수 있다. 
+위 (1), (2)식을 아래와 같은 <span class="arithmatex">\(Ar=b\)</span>꼴의 행렬 식으로 나타낼 수 있다. 
 $$
-{\renewcommand{\arraystretch}{1.5} % &lt;-- 행(위아래) 간격 키우기
+{\renewcommand{\arraystretch}{1.5}
 \begin{bmatrix} 
-   0  &amp; -u_z &amp;  u_y \
- u_z  &amp;    0 &amp; -u_x \
--u_y  &amp;  u_x &amp;    0 \
- n_x  &amp;  n_y &amp;  n_z 
+0 &amp; -u_z &amp; u_y \\
+u_z &amp; 0 &amp; -u_x \\
+-u_y &amp; u_x &amp; 0 \\
+n_x &amp; n_y &amp; n_z
 \end{bmatrix}
-\begin{bmatrix} 
-r_x \
-r_y \
-r_z 
+\begin{bmatrix}
+r_x \\ r_y \\ r_z
 \end{bmatrix}
 =
-\begin{bmatrix} 
--\tfrac{m_x}{\lvert f \rvert} \
--\tfrac{m_y}{\lvert f \rvert} \
--\tfrac{m_z}{\lvert f \rvert} \
+\begin{bmatrix}
+-\tfrac{m_x}{\lvert f\rvert} \\
+-\tfrac{m_y}{\lvert f\rvert} \\
+-\tfrac{m_z}{\lvert f\rvert} \\
 -d
 \end{bmatrix}}
-\rightarrow Ar=b
-\tag{3}
+\label{}
 $$
-(3)번 식을 r로 정리를 하면 다음과 같다. 
+위 식은 다음과 같이 요약된다.
+$$
+Ar = b
+\label{}
+$$
+이를 다시 r로 정리를 하면 다음과 같다. 
 $$
 r = A^{+}b = (A^{T}A)^{-1}A^{T}b
-\tag{4}
+\label{}
 $$
-위 (4)번 식을 통해 FT센서부터 외력 인가 지점을 구할 수 있다. </li>
-</ul>
+위 (4)번 식을 통해 FT센서부터 외력 인가 지점을 구할 수 있다. </p>
+<hr />
 <h1 id="2-ft">2. 다중벽면, 다중 FT센서</h1>
 <p align="center">
   <img src="../Fig/Contact Point Estimation/3d_external_force.png" width="500">
@@ -439,72 +468,72 @@ $$
 <p align="center">
   <em>Fig. 2. 3개의 FT 센서와 목업 위성체</em>
 </p>
-<p>3개의 FT센서를 사용하면:
-- 각 센서를 통해 서로 다른 기준점에서의 모멘트를 측정할 수 있기 때문에 추정에 강점
-- 1개의 센서가 튀어도 나머지로 추정이 가능함
-등 과 같은 여러 장점들이 존재한다. </p>
-<p>이러한 장점들을 살리기 위해서 다음과 같은 방법을 사용한다. </p>
-<h2 id="21-mathbfp_c">2.1 공통 접촉점 $\mathbf{p_c}$로 “한 번에 쌓기”</h2>
-<p>각 센서 $i$의 원점 위치를 $p_i$​ (모두 같은 좌표계로 표현)라고 하고, 접촉점 $p_c$​가 미지수라면</p>
+<p>3개의 FT센서를 사용하면:</p>
 <ul>
-<li>점접촉(모멘트 0) 가정이면 센서별로
+<li>각 센서를 통해 서로 다른 기준점에서의 모멘트를 측정할 수 있기 때문에 추정에 강점</li>
+<li>1개의 센서가 튀어도 나머지로 추정이 가능함</li>
+</ul>
+<p>등 과 같은 여러 장점들이 존재한다. 이러한 장점들을 살리기 위해서 다음과 같은 방법을 사용한다. </p>
+<h2 id="21-mathbfp_c">2.1 공통 접촉점 <span class="arithmatex">\(\mathbf{p_c}\)</span>로 “한 번에 쌓기”</h2>
+<p>각 센서 <span class="arithmatex">\(i\)</span>의 원점 위치를 <span class="arithmatex">\(p_i\)</span>​ (모두 같은 좌표계로 표현)라고 하고, 접촉점 <span class="arithmatex">\(p_c\)</span>​가 미지수라면</p>
+<p>점접촉(모멘트 0) 가정이면 센서별로
 $$
 r_i \times u_i = -\frac{m_i}{|f_i|}
-\tag{5}
+\label{}
 $$
-즉, $A r=b$를 센서별로 쓰되 미지수는 $r_i$​가 아니라 $p_c$ 로 바꾸면:
+즉, <span class="arithmatex">\(A r=b\)</span>를 센서별로 쓰되 미지수는 <span class="arithmatex">\(r_i\)</span>​가 아니라 <span class="arithmatex">\(p_c\)</span> 로 바꾸면:<br />
 $$
-A_i \,\vec{r}<em>i = b_i​
-\tag{6}
+A_i \,\vec{r}_i = b_i​
+\label{}
+$$</p>
+<p>여기서
 $$
-여기서
-$$
-A_i= \begin{bmatrix} 0&amp;-u</em>{iz}&amp;u_{iy}\ u_{iz}&amp;0&amp;-u_{ix}\ -u_{iy}&amp;u_{ix}&amp;0\ n_x&amp;n_y&amp;n_z \end{bmatrix},\quad b_i= \begin{bmatrix} -\frac{m_{ix}}{|f_i|}\ -\frac{m_{iy}}{|f_i|}\ -\frac{m_{iz}}{|f_i|}\ -d \end{bmatrix}​​
+A_i= \begin{bmatrix} 0&amp;-u_{iz}&amp;u_{iy}\\ u_{iz}&amp;0&amp;-u_{ix}\\ -u_{iy}&amp;u_{ix}&amp;0\\ n_x&amp;n_y&amp;n_z \end{bmatrix},\quad b_i= \begin{bmatrix} -\frac{m_{ix}}{|f_i|}\\ -\frac{m_{iy}}{|f_i|}\\ -\frac{m_{iz}}{|f_i|}\\ -d \end{bmatrix}
+\label{}​​
 $$
 3개를 “스택”해서 한 번에 풀면
 $$
-\underbrace{\begin{bmatrix} A_1\A_2\A_3 \end{bmatrix}}<em>{A} p_c = \underbrace{\begin{bmatrix} b_1 + A_1 p_1\ b_2 + A_2 p_2\ b_3 + A_3 p_3 \end{bmatrix}}</em>{b}
-\tag{7}​​​​​
+\begin{bmatrix} A_1\\A_2\\A_3 \end{bmatrix} p_c = \begin{bmatrix} b_1 + A_1 p_1\\ b_2 + A_2 p_2\\ b_3 + A_3 p_3 \end{bmatrix}
+\label{}​​​​​
 $$
-이를 통해 접촉점을 추정할 수 있다. </li>
-</ul>
+이를 통해 접촉점을 추정할 수 있다. </p>
 <p>추가적으로 할 수 있는 부분은 아래와 같다.</p>
 <p><strong>(A) 가중 최소제곱 (힘 큰 센서를 더 신뢰)</strong>
 $$
 p_c = \arg\min_p \sum_i w_i|A_i(p-p_i)-b_i|^2,\quad w_i \propto |f_i| \text{ or } |f_i|^2
-\tag{8}
+\label{}
 $$
 <strong>(B) 잔차 기반 outlier 제거 (한 센서 튀면 자동 배제)</strong></p>
 <ul>
-<li>각 센서 잔차  $e_i=|A_i(p-p_i)-b_i|$ 보고</li>
+<li>각 센서 잔차  <span class="arithmatex">\(e_i=\|A_i(p-p_i)-b_i\|\)</span> 보고</li>
 <li>큰 센서 빼고 다시 풀기 (RANSAC 느낌)</li>
 </ul>
+<hr />
 <h1 id="3-contact-plane-identification">3. 접촉면 찾기 (Contact Plane Identification)</h1>
 <p>다중 FT 센서를 사용하여 공통 접촉점 pc\mathbf{p_c}pc​를 추정하였다면, 다음 단계는 어느 면에서 접촉이 발생했는지를 판별하는 것이다.<br />
 본 시스템에서는 FT 센서, 구조물, 그리고 접촉면이 rigid하게 연결되어 있으므로, 접촉면은 미리 정의된 유한 개의 평면 후보 집합 중 하나로 제한된다.</p>
-<hr />
 <h2 id="31">3.1 평면 후보 정의</h2>
-<p>각 접촉면 $\Pi_k$​는 다음과 같은 평면 방정식으로 표현된다.
+<p>각 접촉면 <span class="arithmatex">\(\Pi_k\)</span>​는 다음과 같은 평면 방정식으로 표현된다.
 $$
 \Pi_k:\quad n_k^\top p + d_k = 0
-\tag{9}
+\label{}
 $$
 여기서</p>
 <ul>
 <li>
-<p>$n_k \in \mathbb{R}^3$ : k번째 면의 단위 법선 벡터</p>
+<p><span class="arithmatex">\(n_k \in \mathbb{R}^3\)</span> : k번째 면의 단위 법선 벡터</p>
 </li>
 <li>
-<p>$d_k$​ : 기준 좌표계 원점으로부터 해당 면까지의 signed distance</p>
+<p><span class="arithmatex">\(d_k\)</span>​ : 기준 좌표계 원점으로부터 해당 면까지의 signed distance</p>
 </li>
 <li>
-<p>$k \in {1,\dots,5}$ : 박스의 5개 면 중 하나</p>
+<p><span class="arithmatex">\(k \in \{1,\dots,5\}\)</span> : 박스의 5개 면 중 하나</p>
 </li>
 </ul>
 <p>본 연구에서는 박스 좌표계 기준으로 다음과 같은 법선 벡터를 사용한다.
 $$
-\begin{aligned} n_{+x} &amp;= \begin{bmatrix}1\0\0\end{bmatrix} \quad \text{(앞면)}, \ n_{-x} &amp;= \begin{bmatrix}-1\0\0\end{bmatrix} \quad \text{(뒷면)}, \ n_{+y} &amp;= \begin{bmatrix}0\1\0\end{bmatrix} \quad \text{(왼쪽면)}, \ n_{-y} &amp;= \begin{bmatrix}0\-1\0\end{bmatrix} \quad \text{(오른쪽면)}, \ n_{+z} &amp;= \begin{bmatrix}0\0\1\end{bmatrix} \quad \text{(상단면)}. \end{aligned}
-\tag{10}
+\begin{aligned} n_{+x} &amp;= \begin{bmatrix}1\\0\\0\end{bmatrix} \quad \text{(앞면)}, \\ n_{-x} &amp;= \begin{bmatrix}-1\\0\\0\end{bmatrix} \quad \text{(뒷면)}, \\ n_{+y} &amp;= \begin{bmatrix}0\\1\\0\end{bmatrix} \quad \text{(왼쪽면)}, \\ n_{-y} &amp;= \begin{bmatrix}0\\-1\\0\end{bmatrix} \quad \text{(오른쪽면)}, \\ n_{+z} &amp;= \begin{bmatrix}0\\0\\1\end{bmatrix} \quad \text{(상단면)}. \end{aligned}
+\label{}
 $$
 각 면에 대응하는 dkd_kdk​ 역시 구조물의 기하로부터 미리 계산된 상수이다.</p>
 <hr />
@@ -513,12 +542,12 @@ $$
 3개의 FT 센서가 측정한 힘을 합산하여 <strong>net force</strong>를 구성한다.
 $$
 f_{\text{net}} = \sum_{i=1}^{3} f_i
-\tag{11}
+\label{}
 $$
 단위 힘 방향 벡터는 다음과 같이 정의한다.
 $$
 f_{\text{net}} = \frac{-f_{\text{net}}}{|f_{\text{net}}|}
-\tag{12}​
+\label{}​
 $$</p>
 <blockquote>
 <p>부호는 FT 센서가 측정하는 값이 “접촉면이 센서를 미는 반력”임을 고려하여 설정한다.</p>
@@ -526,30 +555,32 @@ $$</p>
 <p>각 평면 후보에 대해 다음 점수를 계산한다.
 $$
 s_k = n_k^{T} \hat f_{\text{net}}
-\tag{13}
+\label{}
 $$
 $$
 k_{\text{dir}} = \arg\max_kS_k
-\tag{14}​
+\label{}​
 $$
 이는 외력이 가장 잘 정렬되는 법선 방향의 면을 의미한다.</p>
 <h3 id="_1">신뢰도 임계값 (선택적)</h3>
 <p>마찰이나 미끄럼이 존재할 경우, 힘 방향이 법선에서 벗어날 수 있으므로 다음 조건을 추가한다.
 $$
 ⁡s_{k_{\text{dir}}} \ge \cos\theta_{\max}​
-\tag{15}
+\label{}
 $$
-- 예: $\theta_{\max}=25^\circ \Rightarrow \cos\theta_{\max}\approx 0.906$</p>
+- 예: <span class="arithmatex">\(\theta_{\max}=25^\circ \Rightarrow \cos\theta_{\max}\approx 0.906\)</span></p>
 <p>조건을 만족하지 못할 경우, 접촉면 판별을 보류하거나 이전 접촉면을 유지한다.</p>
 <hr />
 <h2 id="33-plane-residual">3.3 접촉점 기반 최종 확정 (Plane Residual)</h2>
-<p>힘 방향 기반 판별은 방향성 정보만 사용하므로, 보다 확실한 판별을 위해 추정된 접촉점 $\mathbf{p_c}$​ 를 이용한 잔차 기반 판별을 수행한다.</p>
+<p>힘 방향 기반 판별은 방향성 정보만 사용하므로, 보다 확실한 판별을 위해 추정된 접촉점 <span class="arithmatex">\(\mathbf{p_c}\)</span>​ 를 이용한 잔차 기반 판별을 수행한다.</p>
 <p>각 평면 후보에 대해 다음 잔차를 계산한다.
 $$
 e_k = \left| n_k^\top p_c + d_k \right|
+\label{}
 $$
 $$
-k^* = \arg\min_k e_k​
+k^* = \arg\min_k e_k
+\label{}​
 $$
 이는 접촉점이 해당 평면 위에 있을수록 잔차가 작아진다는 성질을 이용한 것이다.</p>
 <hr />
@@ -559,10 +590,12 @@ $$
 <li><strong>힘 방향 기반으로 상위 후보 1–2개 선택</strong>
     $$
     \mathcal{K} = {k \mid s_k \text{ 상위}}
+    \label{}
     $$</li>
 <li><strong>접촉점 잔차 최소화</strong>
     $$
-k^* = \arg\min_{k\in\mathcal{K}} \left| n_k^\top p_c + d_k \right|​​
+k^* = \arg\min_{k\in\mathcal{K}} \left| n_k^\top p_c + d_k \right|
+\label{}​​
     $$
 이를 통해 마찰, 센서 노이즈, 일시적인 힘 방향 왜곡에도 강인한 접촉면 판별이 가능하다.</li>
 </ol>
@@ -571,6 +604,7 @@ k^* = \arg\min_{k\in\mathcal{K}} \left| n_k^\top p_c + d_k \right|​​
 <p>최종적으로 선택된 접촉면 k*k^*k*에 대해, 이후 접촉점 추정 및 제어 단계에서는 다음 평면 제약을 사용한다.
 $$
 n_{k^*}^\top p_c + d_{k^*} = 0
+\label{}
 $$</p>
 
 
@@ -630,6 +664,10 @@ $$</p>
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../assets/javascripts/marquee.js"></script>
+      
+        <script src="../assets/javascripts/mathjax-config.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
