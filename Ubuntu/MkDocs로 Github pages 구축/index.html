@@ -404,22 +404,33 @@ mkdocs new .
 <p>→ 생성되는 <code>docs/</code> 폴더가 <strong>github.io로 나갈 영역</strong></p>
 <h2 id="21">2.1 목표 폴더 구조</h2>
 <p><code>~/Documents/Obsidian Vault/</code>
-<strong>폴더</strong>
--  <code>assets_src/</code> : 커스텀 CSS/JS 원본(Obsidian과 분리)
--  <code>docs_build/</code> : MkDocs가 읽는 문서 루트(= <code>docs_dir</code>)
--  <code>notes/</code> : Obsidian에서 실제로 작성하는 원본 노트
-- <code>scripts/</code> : 자동 링크/네비 생성 파이썬 스크립트
--  <code>site/</code> : <code>mkdocs build</code> 결과물(로컬 빌드용, gh-deploy가 쓰기도 함)
-<strong>파일</strong>
-- <code>mkdocs.yml</code> : MkDocs 사이트 설정 파일(테마, 문서 폴더, 확장, CSS/JS, nav 등)
-- <code>serve.sh</code> : <code>sync_links.py</code>로 notes→docs_build 동기화, <code>mkdocs serve</code>로 로컬 미리보기 실행
-- <code>deploy.sh</code> : <code>sync_links.py</code>로 동기화, <code>mkdocs gh-deploy</code>로 GitHub Pages에 배포`</p>
+<strong>폴더</strong></p>
+<ul>
+<li><code>assets_src/</code> : 커스텀 CSS/JS 원본(Obsidian과 분리)</li>
+<li><code>docs_build/</code> : MkDocs가 읽는 문서 루트(= <code>docs_dir</code>)</li>
+<li><code>notes/</code> : Obsidian에서 실제로 작성하는 원본 노트</li>
+<li><code>scripts/</code> : 자동 링크/네비 생성 파이썬 스크립트</li>
+<li><code>site/</code> : <code>mkdocs build</code> 결과물(로컬 빌드용, gh-deploy가 쓰기도 함)</li>
+</ul>
+<p><strong>파일</strong></p>
+<ul>
+<li><code>mkdocs.yml</code> : MkDocs 사이트 설정 파일(테마, 문서 폴더, 확장, CSS/JS, nav 등)</li>
+<li><code>serve.sh</code> : <code>sync_links.py</code>로 notes→docs_build 동기화, <code>mkdocs serve</code>로 로컬 미리보기 실행</li>
+<li><code>deploy.sh</code> : <code>sync_links.py</code>로 동기화, <code>mkdocs gh-deploy</code>로 GitHub Pages에 배포</li>
+</ul>
 <blockquote>
 <p>[!notice] Obcidian에서의 설정 
 - 옵시디언에서 작성한 notes들을 public/private으로 github.io에 공개할지 여부
 - <code>scripts/</code>내부의 파이썬 파일을 통해 자동으로 분류 및  mkdocs.yml 내부 nav 자동 작성 등 여러 기능을 작성해놓음.
 </p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">Obsidian에서의 설정</p>
+<ul>
+<li>Obsidian에서 작성한 notes를 public/private로 구분</li>
+<li>scripts 내부 파이썬으로 nav 자동 생성</li>
+</ul>
+</div>
 <h2 id="22">2.2 로컬에서 미리보기</h2>
 <p><code>mkdocs serve</code></p>
 <p>브라우저에서:
