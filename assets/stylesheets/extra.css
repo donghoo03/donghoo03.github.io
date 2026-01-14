@@ -1,0 +1,57 @@
+/* Sidebar: 한 줄 유지 */
+.md-nav__link {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* 실제 텍스트 요소 */
+.md-nav__link .md-ellipsis,
+.md-nav__link span {
+  display: inline-block;
+  white-space: nowrap;
+  transform: translateX(0);
+  will-change: transform;
+}
+
+/* hover 시: JS가 넣어준 거리/시간을 사용 */
+.md-nav__link.is-marquee:hover .md-ellipsis,
+.md-nav__link.is-marquee:hover span {
+  animation-name: sidebar-marquee;
+  animation-duration: var(--marquee-duration, 6s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: 0.1s; /* 시작 너무 늦지 않게 */
+}
+
+@keyframes sidebar-marquee {
+  0%   { transform: translateX(0); }
+  5%  { transform: translateX(0); } /* 살짝 멈추고 */
+  100% { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
+}
+
+
+/* ===== TOC(오른쪽) 한 줄 + 가로 스크롤 ===== */
+
+/* TOC 링크는 줄바꿈 금지 */
+.md-sidebar--secondary .md-nav__link,
+.md-sidebar--secondary .md-nav__item {
+  white-space: nowrap;
+}
+
+/* TOC 네비 자체에서 가로 스크롤 허용 */
+.md-sidebar--secondary .md-nav {
+  overflow-x: auto;
+}
+
+/* 링크가 스크롤 폭을 늘릴 수 있게 */
+.md-sidebar--secondary .md-nav__link {
+  display: inline-block;
+  max-width: none;
+}
+
+/* (선택) 스크롤바 높이 */
+.md-sidebar--secondary .md-nav::-webkit-scrollbar {
+  height: 6px;
+}
+
