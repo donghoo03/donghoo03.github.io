@@ -1,0 +1,10 @@
+# Hugo 빌드 산출물
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# OS / 편집기 noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.bak

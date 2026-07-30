@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ with .Content }}<div class="intro">{{ . }}</div>{{ end }}
+<ul class="posts">
+  {{ range (where site.RegularPages "Section" "posts") }}
+  <li>
+    <a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <div class="date">{{ with .Date }}{{ time.Format "2006-01-02" . }}{{ end }}</div>
+    <p>{{ .Summary | plainify | truncate 140 }}</p>
+  </li>
+  {{ else }}
+  <li><p>아직 글이 없습니다.</p></li>
+  {{ end }}
+</ul>
+{{ end }}

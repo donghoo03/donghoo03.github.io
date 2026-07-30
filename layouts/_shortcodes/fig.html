@@ -1,0 +1,17 @@
+{{- /*
+  그림 + 캡션. 캡션을 markdownify 로 통과시키므로 캡션 안의 $...$ 수식도 렌더링된다.
+  (원시 <p align="center"> HTML 블록 안에서는 passthrough 가 동작하지 않기 때문에 필요)
+
+  사용법:
+    {{< fig src="Ch3_1.png" width="500" >}}
+    <Fig 3.1> Relationships between $\xi$, $R$ ...
+    {{< /fig >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $width := .Get "width" | default "500" -}}
+<figure class="fig">
+  <img src="{{ $src }}" width="{{ $width }}" alt="{{ .Get "alt" | default "" }}">
+  {{- with trim .Inner "\n\r\t " }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

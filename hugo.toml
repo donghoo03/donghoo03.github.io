@@ -1,0 +1,43 @@
+baseURL = 'https://donghoo03.github.io/'
+locale = 'ko-kr'
+defaultContentLanguage = 'ko'
+title = 'Donghoo Docs'
+
+# 요약 길이 (한국어라 넉넉하게)
+summaryLength = 40
+
+[pagination]
+  pagerSize = 10
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # 노트에 있는 <p align="center"><img ...> 같은 HTML 블록을 그대로 통과시킴
+      unsafe = true
+
+    # ── 수식의 핵심 ──────────────────────────────────────────────
+    # passthrough는 구분자 안의 원문을 마크다운 파서가 건드리지 못하게 보존한다.
+    # 덕분에 \\ 가 \ 로 먹히거나 _ 가 이탤릭으로 해석되는 문제가 원천적으로 없다.
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block  = [['\[', '\]'], ['$$', '$$']]
+        # 기본 설정엔 \( \) 만 있다. 노트가 $...$ 를 쓰므로 추가했음.
+        inline = [['\(', '\)'], ['$', '$']]
+
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[params]
+  description = '로보틱스 · 제어 · Lie group 노트'
+  author = 'Donghoo Kim'
+  # KaTeX 스타일시트 버전 (transform.ToMath 가 뱉는 마크업과 짝을 맞춰야 함)
+  katexVersion = '0.16.11'
+
+# 커스텀 LaTeX 매크로는 data/katex.toml 에 있음
+# (config 의 params 키는 Hugo 가 소문자로 정규화해서 '\V' 를 담을 수 없다)

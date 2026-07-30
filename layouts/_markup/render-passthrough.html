@@ -1,0 +1,19 @@
+{{- /*
+  passthrough 렌더 훅: 수식을 빌드 타임에 KaTeX로 렌더링한다.
+  Hugo에 내장된 KaTeX 엔진을 쓰므로 별도 설치나 클라이언트 JS 로딩이 없다.
+  output "htmlAndMathml" 은 스크린리더·접근성을 위해 MathML을 함께 출력한다.
+  (이 출력에는 KaTeX 스타일시트가 필요하다 — baseof.html 에서 조건부로 넣는다)
+*/ -}}
+{{- $opts := dict
+      "output" "htmlAndMathml"
+      "displayMode" (eq .Type "block")
+      "macros" hugo.Data.katex.macros
+-}}
+{{- with try (transform.ToMath .Inner $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "수식 렌더링 실패: %s (위치: %s)" . $.Position -}}
+  {{- else -}}
+    {{- .Value -}}
+    {{- $.Page.Store.Set "hasMath" true -}}
+  {{- end -}}
+{{- end -}}
