@@ -3,6 +3,13 @@
 /resources/_gen/
 .hugo_build.lock
 
+# ── 비공개 노트의 평문 원본 (절대 커밋 금지) ──────────────────
+# 이 저장소는 public 이므로, 평문이 들어오면 사이트 렌더링 여부와 무관하게 공개된다.
+# 커밋되는 것은 static/private/*.html (암호화본) 뿐이다.
+/private_src/
+/content/private/
+/.private-build/
+
 # OS / 편집기 noise
 .DS_Store
 Thumbs.db
