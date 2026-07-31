@@ -8,6 +8,8 @@
 # 커밋되는 것은 static/private/*.html (암호화본) 뿐이다.
 /private_src/
 /.private-build/
+/scripts/
+/.staticrypt.json
 # content/private/ 는 목록 페이지(_index.md)만 커밋하고,
 # 발행 중 임시로 생기는 노트 폴더는 전부 무시한다.
 /content/private/*
