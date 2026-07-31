@@ -41,7 +41,7 @@ enableEmoji = true
   since = 2026
 
   # 라이트/다크: "auto"(브라우저 설정 따름) | "light" | "dark"
-  colorScheme = 'auto'
+  colorScheme = 'light'
   hideColorSchemeToggle = false
 
   customCSS = []
