@@ -62,3 +62,8 @@ enableEmoji = true
   name = 'Tags'
   weight = 2
   url = 'tags/'
+
+[[menu.main]]
+  name = 'Private'
+  weight = 3
+  url = 'private/'

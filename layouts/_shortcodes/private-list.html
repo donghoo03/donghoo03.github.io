@@ -1,0 +1,25 @@
+{{- /*
+  비공개 노트 목록. data/private.json 에 등록된 항목을 렌더링한다.
+  제목·날짜만 공개되고 본문은 암호화되어 있어, 링크를 누르면 비밀번호 화면이 나온다.
+  (scripts/publish-private.ps1 이 발행할 때 data/private.json 을 자동으로 갱신한다)
+*/ -}}
+{{- $data := index hugo.Data "private" -}}
+{{- with $data -}}
+  {{- $notes := sort .notes "date" "desc" -}}
+  {{- if $notes }}
+<ul class="private-list">
+  {{- range $notes }}
+  <li>
+    <a href="{{ printf "/private/%s.html" .slug | relURL }}">
+      <span class="lock" aria-hidden="true">&#128274;</span>{{ .title }}
+    </a>
+    <time datetime="{{ .date }}">{{ .date }}</time>
+  </li>
+  {{- end }}
+</ul>
+  {{- else }}
+<p>아직 등록된 비공개 노트가 없습니다.</p>
+  {{- end }}
+{{- else }}
+<p>아직 등록된 비공개 노트가 없습니다.</p>
+{{- end -}}

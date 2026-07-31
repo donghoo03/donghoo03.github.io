@@ -44,4 +44,14 @@ figure.fig figcaption {
   opacity: 0.75; text-align: center;
 }
 figure.fig figcaption p { margin: 0; }
+
+/* 비공개 노트 목록 (/private/) */
+.private-list { list-style: none; padding: 0; }
+.private-list li {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+}
+.private-list .lock { margin-right: 8px; }
+.private-list time { font-size: 0.85em; opacity: 0.7; white-space: nowrap; }
 </style>
