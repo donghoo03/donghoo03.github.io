@@ -1,0 +1,47 @@
+{{- /*
+  hugo-coder 테마의 head/custom-styles.html 을 오버라이드한다.
+  원본 로직(customCSS / customSCSS)을 그대로 유지하고, 그 뒤에 수식 관련
+  스타일을 덧붙인다.
+
+  KaTeX 스타일시트를 조건 없이(hasMath 검사 없이) 넣는 이유:
+  테마가 이 파티셜을 partialCached 로 호출해서 페이지별 분기가 캐시에 굳어버린다.
+  수식 위주 사이트라 모든 페이지에 넣는 편이 안전하다.
+*/ -}}
+{{ range .Site.Params.customCSS }}
+  {{ if hugo.IsServer }}
+    {{ $styles := resources.Get . }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+  {{ else }}
+    {{ $styles := resources.Get . | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+  {{ end }}
+{{ end }}
+
+{{ range .Site.Params.customSCSS }}
+  {{/* We don't change the targetPath to because it's transparent to users */}}
+  {{ if hugo.IsServer }}
+    {{ $cssOpts := (dict "enableSourceMap" true ) }}
+    {{ $styles := resources.Get . | toCSS $cssOpts }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" media="screen">
+  {{ else }}
+    {{ $styles := resources.Get . | toCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous" media="screen" />
+  {{ end }}
+{{ end }}
+
+{{/* ── 수식 (transform.ToMath 가 만든 마크업용 스타일시트) ── */}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@{{ site.Params.katexVersion }}/dist/katex.min.css">
+
+<style>
+/* 긴 블록 수식이 페이지를 가로로 밀지 않도록 개별 스크롤 */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+
+/* fig 숏코드 (라이트/다크 양쪽에서 자연스럽게 보이도록 opacity 사용) */
+figure.fig { margin: 28px 0; text-align: center; }
+figure.fig img { max-width: 100%; height: auto; }
+figure.fig figcaption {
+  margin-top: 10px; font-size: 0.9em; line-height: 1.6;
+  opacity: 0.75; text-align: center;
+}
+figure.fig figcaption p { margin: 0; }
+</style>
